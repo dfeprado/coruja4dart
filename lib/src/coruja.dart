@@ -2,6 +2,9 @@ import 'dart:io';
 import 'coruja_request.dart';
 import 'coruja_request_factory.dart';
 
+/// Esse é o tipo da função responsável por um caminho de uma requisição GET/POST
+/// 
+/// A implementação das funções responsáveis devem seguir essa assinatura.
 typedef CorujaFunction = Function(CorujaRequest request);
 
 class _CorujaRoute {
@@ -44,24 +47,38 @@ class _DefaultCorujaRequestFactory implements CorujaRequestFactory {
   }
 }
 
+/// Representa um servidor HTTP com facilidades para manipulação de requisições GET e POST
 class Coruja {
   HttpServer? _httpServer;
   final _getRoutes = <_CorujaRoute, CorujaFunction>{};
   final _postRoutes = <_CorujaRoute, CorujaFunction>{};
   CorujaRequestFactory _requestFactory = _DefaultCorujaRequestFactory();
 
+  /// Adiciona um caminho (path) e uma função responsável (fn) por ele.
+  /// 
+  /// Quando uma requisição do tipo GET satisfazer o caminho, a função responsável
+  /// será invocada.
   void addGetRoute(String path, CorujaFunction fn) {
     _getRoutes[_CorujaRoute(path)] = fn;
   }
 
+  /// Adiciona um caminho (path) e uma função responsável (fn) por ele.
+  /// 
+  /// Quando uma requisição do tipo POST satisfazer o caminho, a função responsável
+  /// será invocada.
   void addPostRoute(String path, CorujaFunction fn) {
     _postRoutes[_CorujaRoute(path)] = fn;
   }
 
+  /// Altera a fábrica de requisições padrão por uma outra qualquer que herde
+  /// de CorujaRequestFactory
   void setRequestFactory(CorujaRequestFactory newFactory) {
     _requestFactory = newFactory;
   }
 
+  /// Inicia o servidor HTTP na porta desejada.
+  /// 
+  /// A porta padrão é a 8181.
   void listen({int port = 8181}) {
     if (_httpServer != null) {
       return;
@@ -104,6 +121,9 @@ class Coruja {
       ..close();
   }
 
+  /// Encerra o servidor HTTP
+  /// 
+  /// Não retorna nenhum erro caso o servidor não tenha iniciado.
   void close() {
     _httpServer?.close(force: true).then((v) {
       _httpServer = null;

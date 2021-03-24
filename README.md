@@ -1,22 +1,4 @@
-A library for Dart developers.
+# Coruja4Dart
+## Uma biblioteca que fornece meios fáceis de configurar e tratar requisições e rotas HTTP, como o Express do NodeJS
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
-
-## Usage
-
-A simple usage example:
-
-```dart
-import 'package:coruja/coruja.dart';
-
-main() {
-  var awesome = new Awesome();
-}
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+Consulte a api da biblioteca em [Coruja API docs](https://pub.dev/documentation/coruja/latest/)

@@ -1,6 +1,6 @@
 name: coruja
-description: A nodeJS express like library
-version: 0.0.0
+description: A nodeJS express like library. Provides facilities to configure routes to HTTP requests of type GET/POST and ways to change the default request object received by the route function handler.
+version: 0.0.1
 homepage: https://github.com/dfeprado/coruja4dart
 
 environment:
